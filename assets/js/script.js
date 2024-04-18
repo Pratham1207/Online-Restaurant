@@ -1,11 +1,6 @@
 "use strict";
 
-/**
- * PRELOAD
- *
- * loading will be end after document is loaded
- */
-
+// loading will be end after document is loaded
 const preloader = document.querySelector("[data-preaload]");
 
 window.addEventListener("load", function () {
@@ -13,9 +8,7 @@ window.addEventListener("load", function () {
   document.body.classList.add("loaded");
 });
 
-/**
- * add event listener on multiple elements
- */
+//  add event listener on multiple elements
 
 const addEventOnElements = function (elements, eventType, callback) {
   for (let i = 0, len = elements.length; i < len; i++) {
@@ -23,9 +16,7 @@ const addEventOnElements = function (elements, eventType, callback) {
   }
 };
 
-/**
- * NAVBAR
- */
+// NAVBAR
 
 const navbar = document.querySelector("[data-navbar]");
 const navTogglers = document.querySelectorAll("[data-nav-toggler]");
@@ -38,13 +29,6 @@ const toggleNavbar = function () {
 };
 
 addEventOnElements(navTogglers, "click", toggleNavbar);
-
-/**
- * HEADER & BACK TOP BTN
- */
-
-const header = document.querySelector("[data-header]");
-const backTopBtn = document.querySelector("[data-back-top-btn]");
 
 let lastScrollPos = 0;
 
@@ -69,10 +53,6 @@ window.addEventListener("scroll", function () {
     backTopBtn.classList.remove("active");
   }
 });
-
-/**
- * HERO SLIDER
- */
 
 const heroSlider = document.querySelector("[data-hero-slider]");
 const heroSliderItems = document.querySelectorAll("[data-hero-slider-item]");
@@ -112,10 +92,6 @@ const slidePrev = function () {
 
 heroSliderPrevBtn.addEventListener("click", slidePrev);
 
-/**
- * auto slide
- */
-
 let autoSlideInterval;
 
 const autoSlide = function () {
@@ -139,26 +115,3 @@ addEventOnElements(
 );
 
 window.addEventListener("load", autoSlide);
-
-/**
- * PARALLAX EFFECT
- */
-
-const parallaxItems = document.querySelectorAll("[data-parallax-item]");
-
-let x, y;
-
-window.addEventListener("mousemove", function (event) {
-  x = (event.clientX / window.innerWidth) * 10 - 5;
-  y = (event.clientY / window.innerHeight) * 10 - 5;
-
-  // reverse the number eg. 20 -> -20, -5 -> 5
-  x = x - x * 2;
-  y = y - y * 2;
-
-  for (let i = 0, len = parallaxItems.length; i < len; i++) {
-    x = x * Number(parallaxItems[i].dataset.parallaxSpeed);
-    y = y * Number(parallaxItems[i].dataset.parallaxSpeed);
-    parallaxItems[i].style.transform = `translate3d(${x}px, ${y}px, 0px)`;
-  }
-});
